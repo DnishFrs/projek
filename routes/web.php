@@ -33,7 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/dashboard', [AssetController::class,'show'])->name('dashboard');
+    Route::get('/dashboard', [AssetController::class, 'list'])->name('dashboard.list');
+    Route::get('/dashboard/show/{id}', [AssetController::class, 'show'])->name('dashboard.show');
+    Route::post('/admin', [AssetController::class, 'store'])->name('admin.store');
 
 });
 

@@ -11,26 +11,6 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <b>{{ __('Items List') }}</b>
                     <br>
-                    {{-- <div>
-                        <table>
-                        <thead>
-                            <tr>
-                                <th><strong>Type</strong></th>
-                                <th><strong>Description</strong></th>
-                                <th><strong>Quantity</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($asset as $data)
-                            <tr>
-                              <th>{{$data->type}}</th>
-                              <th>{{$data->description}}</th>
-                              <th>{{$data->quantity}}</th>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        </table>
-                    </div> --}}
 
                     <div class="flex flex-col">
                         <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
@@ -64,7 +44,8 @@
                                                         class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                                         <td
                                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                            1</td>
+                                                            {{ $data->id }}
+                                                        </td>
                                                         <td
                                                             class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                             {{ $data->type }}
