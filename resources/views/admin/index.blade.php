@@ -27,7 +27,7 @@
                             <button
                                 class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                                 type="submit">Submit</button>
-                        </form>
+                        </form><br>
 
                         @if (session()->has('success'))
                             <div class="alert alert-success">
