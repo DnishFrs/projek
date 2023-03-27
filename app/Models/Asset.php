@@ -9,5 +9,4 @@ class Asset extends Model
 {
     use HasFactory;
 
-    // protected $table="hahaha";
 }

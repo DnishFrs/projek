@@ -36,14 +36,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AssetController::class, 'list'])->name('dashboard.list');
     Route::get('/dashboard/show/{id}', [AssetController::class, 'show'])->name('dashboard.show');
     Route::post('/admin', [AssetController::class, 'store'])->name('admin.store');
+    Route::post('/request', [AssetController::class, 'store_request'])->name('request');
+
 
 });
 
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 });
-
-// Route::view('dashboard','list');
-// Route::get('/dashboard', [AssetController::class,'show']);
 
 require __DIR__ . '/auth.php';
