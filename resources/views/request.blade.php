@@ -14,23 +14,22 @@
                             @csrf
                             <label class="p-6 text-gray-900 dark:text-gray-100" for="title">Title:</label>
                             <input class="p-6 text-black-900 dark:text-black-100" type="text" id="title"
-                                name="title" value="">
+                                name="title" value="" readonly>
 
                             <label class="p-6 text-gray-900 dark:text-gray-100" for="asset_type">Asset Type</label>
                             <select name="asset_type" id="asset_type">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
-                              </select>
+                                @foreach ($assets as $asset)
+                                    <option value="{{ $asset->type }}">{{ $asset->type }}</option>
+                                @endforeach
+                            </select>
 
                             <label class="p-6 text-gray-900 dark:text-gray-100" for="requester_id">Requester ID</label>
                             <input class="p-6 text-black-900 dark:text-black-100" type="text" id="requester_id"
-                                name="requester_id" value=""><br><br>
+                                name="requester_id" value="" readonly><br><br>
 
                             <button
                                 class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                                type="submit">Submit</button>
+                                type="submit" readonly>Submit</button>
                         </form><br>
 
                         @if (session()->has('success'))

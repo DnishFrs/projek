@@ -25,9 +25,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/request', function () {
-    return view('request');
-})->middleware(['auth', 'verified'])->name('request');
+// Route::get('/request', function () {
+//     return view('request');
+// })->middleware(['auth', 'verified'])->name('request');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,7 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AssetController::class, 'list'])->name('dashboard.list');
     Route::get('/dashboard/show/{id}', [AssetController::class, 'show'])->name('dashboard.show');
     Route::post('/admin', [AssetController::class, 'store'])->name('admin.store');
-    Route::post('/request', [AssetController::class, 'store_request'])->name('request');
+
+    Route::get('/request', [AssetController::class, 'createRequest'])->name('request');
+    Route::post('/request', [AssetController::class, 'store_request'])->name('request.submit');
+    // Route::get('/request', [AssetController::class, 'list_request'])->name('request.list');
+
+    Route::get('/admin', [AssetController::class, 'update_request'])->name('admin.request');
 
 
 });

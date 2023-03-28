@@ -32,9 +32,9 @@ class AssetController extends Controller
     {
 
         $request->validate([
-            'type'=> 'required',
-            'description'=> 'required',
-            'quantity'=> 'required | integer',
+            'type' => 'required',
+            'description' => 'required',
+            'quantity' => 'required | integer',
         ]);
 
         $data = new Asset;
@@ -44,21 +44,23 @@ class AssetController extends Controller
 
         $data->save();
         return back()->with('success', 'Asset Successfully Added !');
-
     }
 
-    public function create_request()
+    public function createRequest()
     {
-        return view('request');
+        $assets = Asset::get(); //return array
+        // $assets = Asset::where('id',1)->first(); //return one
+
+        return view('request')->with('assets', $assets);
     }
 
     public function store_request(Request $request)
     {
 
         $request->validate([
-            'title'=> 'required',
-            'asset_type'=> 'required',
-            'requester_id'=> 'required',
+            'title' => 'required',
+            'asset_type' => 'required',
+            'requester_id' => 'required',
         ]);
 
         $data = new ModelsRequest();
@@ -68,6 +70,14 @@ class AssetController extends Controller
 
         $data->save();
         return back()->with('success', 'Items Successfully Requested !');
+    }
+
+    public function update_request()
+    {
+
+        $data = ModelsRequest::get();
+        return view('admin.index', ['request' => $data]);
 
     }
+
 }
