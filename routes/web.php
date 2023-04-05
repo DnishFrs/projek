@@ -25,29 +25,27 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/request', function () {
-//     return view('request');
-// })->middleware(['auth', 'verified'])->name('request');
+Route::middleware(['auth','verified', 'admin'])->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+});
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','verified')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/dashboard', [AssetController::class, 'list'])->name('dashboard.list');
     Route::get('/dashboard/show/{id}', [AssetController::class, 'show'])->name('dashboard.show');
-    Route::post('/admin', [AssetController::class, 'store'])->name('admin.store');
 
     Route::get('/request', [AssetController::class, 'createRequest'])->name('request');
     Route::post('/request', [AssetController::class, 'store_request'])->name('request.submit');
-    // Route::get('/request', [AssetController::class, 'list_request'])->name('request.list');
 
-    Route::get('/admin', [AssetController::class, 'update_request'])->name('admin.request');
+    Route::post('/admin', [AssetController::class, 'store'])->name('admin.insert.asset');
+    Route::get('/admin', [AssetController::class, 'request_list'])->name('admin.request');
 
+    Route::get('/admin/request/edit/{id}', [AssetController::class, 'request_update'])->name('admin.request.edit');
 
-});
-
-Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('index');
 });
 
 require __DIR__ . '/auth.php';

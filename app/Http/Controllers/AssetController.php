@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asset;
-use App\Models\request as ModelsRequest;
+use App\Models\Request as ModelRequest;
 use Illuminate\Http\Request;
 
 class AssetController extends Controller
@@ -32,9 +32,7 @@ class AssetController extends Controller
     {
 
         $request->validate([
-            'type' => 'required',
-            'description' => 'required',
-            'quantity' => 'required | integer',
+            'quantity' => 'integer',
         ]);
 
         $data = new Asset;
@@ -63,7 +61,7 @@ class AssetController extends Controller
             'requester_id' => 'required',
         ]);
 
-        $data = new ModelsRequest();
+        $data = new ModelRequest();
         $data->title = $request->title;
         $data->asset_type = $request->asset_type;
         $data->requester_id = $request->requester_id;
@@ -72,12 +70,18 @@ class AssetController extends Controller
         return back()->with('success', 'Items Successfully Requested !');
     }
 
-    public function update_request()
+    public function request_list()
     {
 
-        $data = ModelsRequest::get();
-        return view('admin.index', ['request' => $data]);
-
+        $data = ModelRequest::get();
+        // dd($data);
+        return view('admin.index', ['asset' => $data]);
     }
 
+    public function request_update($id)
+    {
+        $data = ModelRequest::find($id)->get();
+        return view('admin.request.edit', compact('id'));
+
+    }
 }
