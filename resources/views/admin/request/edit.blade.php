@@ -18,7 +18,7 @@
                             <label class="p-6 text-gray-900 dark:text-gray-100" for="type">Type :</label>
                             <input
                                 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                                type="text" id="type" name="type" value="{{}}"><br>
+                                type="text" id="type" name="type" value=""><br>
 
                             <label class="p-6 text-gray-900 dark:text-gray-100" for="description">Description :</label>
                             <input
